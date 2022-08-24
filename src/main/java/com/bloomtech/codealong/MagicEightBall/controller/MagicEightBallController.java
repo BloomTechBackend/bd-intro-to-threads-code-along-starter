@@ -134,5 +134,24 @@ public class MagicEightBallController {
             return theResponse.clone();
         }  // End of shakeAndTurnOver() method
     }  // End of AskThe8Ball class
+    
+    /**
+     * Helper method to wait for all Threads to complete before resuming
+     *
+     * Makes the thread calling this method wait until all passed in threads are done executing before proceeding.
+     *
+     * @param threads to wait on
+     * @throws InterruptedException
+     *
+     * the .join() method will wait until a Thread is complete before resuming execution
+     *
+     */
+    private void waitForThreadsToComplete(List<Thread> threads) throws InterruptedException {
+        // Go through the List of threads we started and wait for them all to complete
+        for (Thread thread : threads) {
+            thread.join(); // wait for the current Thread to complete before resuming processing
+        }
+    }  // End of waitForThreadsToComplete() method
+    
 }  // End of MagicEightBallController Class
 
